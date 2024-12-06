@@ -2,11 +2,11 @@
 
 ### Recogida datos iniciales
 
-Trabajaremos con las bases de datos de SALFA, que a groso modo contienen
+Trabajaremos con las bases de datos de **SALFA**, que a groso modo contienen
 información respecto del estado de los equipos en posesión de los
 clientes. Para acotar el nuestro estudio, los datos a analizar
-comprenderán los equipos vendidos por SALFA de la marca John Deere entre
-el año 2016 a 2020 con data generada en 2020.
+comprenderán los **equipos vendidos por SALFA de la marca John Deere entre
+el año 2016 a 2020** con data generada en 2020.
 
 ### Instalación librerías
 ```r
@@ -23,7 +23,7 @@ el año 2016 a 2020 con data generada en 2020.
 
 ### Descripción de los datos
 
-La primera fuente de datos llamada **Model Breakdown by PIN** es una
+La primera fuente de datos llamada `Model Breakdown by PIN` es una
 base que recopila información histórica de las alertas emitidas por los
 equipos. En ella podemos encontrar códigos de falla, ID e equipo,
 posición, categoría de la alerta, modelo, etc.
@@ -184,33 +184,33 @@ acerca de la eliminación de variables visitar el informe)
 
 **Variables a considerar:**
 
--   decal\_model\_nm
--   native\_pin
--   alert\_level  
--   pin\_prefix  
--   prod\_line\_nm  
--   tla  
--   first\_cptr\_tm  
--   sum\_ocr\_cnt
--   first\_dtc\_engn\_hours
+-   `decal_model_nm`
+-   `native_pin`
+-   `alert_level` 
+-   `pin_prefix`  
+-   `prod_line_nm`  
+-   `tla`  
+-   `first_cptr_tm`  
+-   `sum_ocr_cnt`
+-   `first_dtc_engn_hours`
 
 **Variables a excluir:**
 
--   pin
--   dealer\_name / dealer\_acct\_id
--   tier\_level
--   start\_of\_month
--   last\_known\_lat / last\_known\_long
--   mfg\_dt
--   last\_known\_engn\_hours
+-   `pin`
+-   `dealer_name` / `dealer_acct_id`
+-   `tier_level`
+-   `start_of_month`
+-   `last_known_lat` / `last_known_long`
+-   `mfg_dt`
+-   `last_known_engn_hours`
 
 Por lo tanto, de esta base eliminaremos 9 variables y nos quedamos con
 9. Las dos variables restantes asociadas a ID código de falla y
-descripción código de falla **(alert\_defn\_dsc, tla\_spn\_fmi)**
+descripción código de falla (`alert\_defn\_dsc`, `tla\_spn\_fmi`)
 también serán eliminadas.
 
 A su vez, el equipo de telemetría dispone de otra fuente de datos
-llamada **DESCRIPTIVOS EQUIPO JD** que recopila información descriptiva
+llamada `DESCRIPTIVOS EQUIPO JD` que recopila información descriptiva
 y en línea de los equipos, de los cuales destacan variables como
 horómetros, odómetros, o incluso fechas de facturación o de la última
 mantención, dependiendo si han realizado las mantenciones en el
@@ -240,20 +240,20 @@ consesionario o no.
     ## # ℹ 4,121 more rows
     ## # ℹ 4 more variables: mant_ult_fecha <dttm>, horometro <chr>, odometro <lgl>, n <dbl>
 
-De esta base **DESCRIPTIVOS EQUIPO JD** consideraremos variables que
+De esta base `DESCRIPTIVOS EQUIPO JD` consideraremos variables que
 serán de interés para nuestro estudio, entre las cuales encontramos:
 
--   **vin\_equipo:** ID del equipo.
--   **fecha\_facturación:** fecha de venta del equipo al cliente.
--   **tipo\_maquinaria\_nivel\_2:** Segrega los equipos en tres grupos
+-   `vin_equipo`: ID del equipo.
+-   `fecha_facturación`: Fecha de venta del equipo al cliente.
+-   `tipo_maquinaria_nivel_2`: Segrega los equipos en tres grupos
     de camión, máquina construcción y forestal.
--   **mant\_ult\_fecha:** fecha de la última mantención del equipo
+-   `mant_ult_fecha`: Fecha de la última mantención del equipo
     realizada en los servicios técnicos de SALFA.
 
 Una vez analizada ambas bases, realizamos una integración de ambas por
-**ID del equipo**, específicamente las variables **NATIVE\_PIN** y
-**VIN\_EQUIPO** resultando una base de datos integrada denominada
-**base\_join** de **32.594 observaciones y 29 variables**.
+`ID del equipo`, específicamente las variables `NATIVE_PIN` y
+`VIN_EQUIPO` resultando una base de datos integrada denominada
+`base_join` de **32.594 observaciones y 29 variables**.
 
 ```r
     base_join <- left_join(base, base_desc, by = c("native_pin" = "vin_equipo"))
@@ -386,16 +386,16 @@ Como se mencionó anteriormente, existen variables que no aportan
 información relevante para la prediccion de fallas en los equipos y no
 serán consideradas, por lo que las eliminaremos. Además, modificaremos
 el formato de las variables que requieren cambios, como fechas en
-formato **POSIXct**, etc.
+formato `POSIXct`, etc.
 
 **Datos modificados**
--	**first_cptr_tm / fecha_facturacion**: inicialmente ambas variables estaban quedando en formato "POSIXct", se realizó la modificación a formato fecha.
+-	`first_cptr_tm` / `fecha_facturacion`: inicialmente ambas variables estaban quedando en formato "POSIXct", se realizó la modificación a formato fecha.
 
 **Datos creados**
--	**mantencion_previa**: se crea esta variable utilizando la columna “mant_ult_fecha”, esta nueva variable tiene formato factor y contiene: los grupos: “si” y “no”, el propósito de la variable es determinar si existe relación entre las fallas reportadas para equipos con y sin mantención previa en SALFA. 
--	**año_facturacion**: se crea esta variable utilizando la columna “fecha_facturación”, esta nueva variable es categórica y contiene el año de venta del equipo, el propósito de esta variable es determinar si existe relación entre la antigüedad del equipo y las fallas. 
+-	`mantencion_previa`: se crea esta variable utilizando la columna “mant_ult_fecha”, esta nueva variable tiene formato factor y contiene: los grupos: “si” y “no”, el propósito de la variable es determinar si existe relación entre las fallas reportadas para equipos con y sin mantención previa en SALFA. 
+-	`año_facturacion`: se crea esta variable utilizando la columna “fecha_facturación”, esta nueva variable es categórica y contiene el año de venta del equipo, el propósito de esta variable es determinar si existe relación entre la antigüedad del equipo y las fallas. 
 
-Guardaremos esta nueva base en un objeto llamado **base\_join2**:
+Guardaremos esta nueva base en un objeto llamado `base_join2`:
 
 ```r
     base_join2 <- base_join %>% 
@@ -438,5 +438,5 @@ Guardaremos esta nueva base en un objeto llamado **base\_join2**:
     ## #   MFG_DT <date>, año_facturacion <chr>, mantencion_previa <fct>
 
 Finalmente, nuestra fuente de datos “base” de trabajo para el proyecto
-será ésta denominada **base\_join2**, la cual cuenta con **32.594
+será ésta denominada `base_join2`, la cual cuenta con **32.594
 observaciones y 13 variables**.
