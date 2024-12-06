@@ -9,17 +9,17 @@ comprenderán los equipos vendidos por SALFA de la marca John Deere entre
 el año 2016 a 2020 con data generada en 2020.
 
 ### Instalación librerías
-
+```r
     install.packages(c("tidyverse","readxl","janitor","skimr","lubridate","dplyr"))
-
-    ## Error in install.packages : Updating loaded packages
-
+```
+```r
     library(tidyverse)
     library(readxl)
     library(janitor)
     library(skimr)
     library(lubridate)
     library(dplyr)
+```
 
 ### Descripción de los datos
 
@@ -148,10 +148,13 @@ información</td>
 
 ### Carga y preparación de los datos
 
+```r
     base <- read_excel("databases/Model_Breakdown_by_PIN_11th_Digit_Full_Data_data.xlsx") %>% 
       clean_names()
-
+```
+```r
     print(base)
+```
 
     ## # A tibble: 32,594 × 20
     ##    decal_model_nm alert_level tla_spn_fmi alert_defn_dsc    dealer_name pin_prefix prod_line_nm tier_level
@@ -213,10 +216,13 @@ horómetros, odómetros, o incluso fechas de facturación o de la última
 mantención, dependiendo si han realizado las mantenciones en el
 consesionario o no.
 
+```r
     base_desc <- read_excel("databases/DESCRIPCTIVOS EQUIPO JD.xlsx") %>% 
       clean_names()
-
+```
+```r
     print(base_desc)
+```
 
     ## # A tibble: 4,131 × 10
     ##    vin_equipo        fecha_facturacion   marca      modelo       tipo_maquina_nivel_2 tipo_maquina_nivel_3
@@ -249,9 +255,12 @@ Una vez analizada ambas bases, realizamos una integración de ambas por
 **VIN\_EQUIPO** resultando una base de datos integrada denominada
 **base\_join** de **32.594 observaciones y 29 variables**.
 
+```r
     base_join <- left_join(base, base_desc, by = c("native_pin" = "vin_equipo"))
-
+```
+```r
     print(base_join)
+```
 
     ## # A tibble: 32,594 × 29
     ##    decal_model_nm alert_level tla_spn_fmi alert_defn_dsc    dealer_name pin_prefix prod_line_nm tier_level
@@ -277,7 +286,9 @@ Ahora haremos un **análisis exploratorio inicial** de los datos, para
 ver las características de nuestras variables y hacer las modificaciones
 necesarias:
 
+```r
     str(base_join)
+```
 
     ## tibble [32,594 × 29] (S3: tbl_df/tbl/data.frame)
     ##  $ decal_model_nm       : chr [1:32594] "310L" "310L" "310L" "ZAXIS 210-5" ...
@@ -310,7 +321,9 @@ necesarias:
     ##  $ odometro             : logi [1:32594] NA NA NA NA NA NA ...
     ##  $ n                    : num [1:32594] 1 1 1 NA 1 1 1 1 1 1 ...
 
+```r
     summary(base_join)
+```
 
     ##  decal_model_nm     alert_level        tla_spn_fmi        alert_defn_dsc     dealer_name       
     ##  Length:32594       Length:32594       Length:32594       Length:32594       Length:32594      
@@ -377,6 +390,7 @@ formato **POSIXct**, etc.
 
 Guardaremos esta nueva base en un objeto llamado **base\_join2**
 
+```r
     base_join2 <- base_join %>% 
       mutate(MFG_DT = ymd(mfg_dt)) %>% 
       separate(col = first_cptr_tm, into = c("first_cptr_tm", 
@@ -394,8 +408,10 @@ Guardaremos esta nueva base en un objeto llamado **base\_join2**
              -last_known_engn_hours, -tla_spn_fmi, -fecha_mantencion, -mant_ult_fecha,
              -fecha_facturacion, -marca, -modelo, -tipo_maquina_nivel_3, -horometro, -odometro,
              -n)
-
+```
+```r
     print(base_join2)
+```
 
     ## # A tibble: 32,594 × 14
     ##    decal_model_nm alert_level alert_defn_dsc        pin_prefix prod_line_nm tla   first_cptr_tm native_pin
