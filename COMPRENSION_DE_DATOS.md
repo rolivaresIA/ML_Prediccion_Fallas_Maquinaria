@@ -388,7 +388,14 @@ serán consideradas, por lo que las eliminaremos. Además, modificaremos
 el formato de las variables que requieren cambios, como fechas en
 formato **POSIXct**, etc.
 
-Guardaremos esta nueva base en un objeto llamado **base\_join2**
+**Datos modificados**
+-	**first_cptr_tm / fecha_facturacion**: inicialmente ambas variables estaban quedando en formato "POSIXct", se realizó la modificación a formato fecha.
+
+**Datos creados**
+-	**mantencion_previa**: se crea esta variable utilizando la columna “mant_ult_fecha”, esta nueva variable tiene formato factor y contiene: los grupos: “si” y “no”, el propósito de la variable es determinar si existe relación entre las fallas reportadas para equipos con y sin mantención previa en SALFA. 
+-	**año_facturacion**: se crea esta variable utilizando la columna “fecha_facturación”, esta nueva variable es categórica y contiene el año de venta del equipo, el propósito de esta variable es determinar si existe relación entre la antigüedad del equipo y las fallas. 
+
+Guardaremos esta nueva base en un objeto llamado **base\_join2**:
 
 ```r
     base_join2 <- base_join %>% 
