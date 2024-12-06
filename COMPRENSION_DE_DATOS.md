@@ -206,7 +206,7 @@ acerca de la eliminación de variables visitar el informe)
 
 Por lo tanto, de esta base eliminaremos 9 variables y nos quedamos con
 9. Las dos variables restantes asociadas a ID código de falla y
-descripción código de falla (`alert\_defn\_dsc`, `tla\_spn\_fmi`)
+descripción código de falla (`alert_defn_dsc`, `tla_spn_fmi`)
 también serán eliminadas.
 
 A su vez, el equipo de telemetría dispone de otra fuente de datos
