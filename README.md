@@ -16,7 +16,14 @@ Este proyecto utiliza herramientas de Machine Learning para procesar datos telem
 
 ## 🎯 Ojetivo del Proyecto
 
-El objetivo de este proyecto es transformar los datos telemétricos de SALFA en un recurso estratégico que permita predecir fallas en equipos mediante modelos de Machine Learning, clasificar alertas críticas para tomar decisiones comerciales informadas y optimizar la gestión comercial y de post venta, priorizando clientes y equipos con mayor riesgo de falla.
+El objetivo de este proyecto es transformar los datos telemáticos de SALFA en un recurso estratégico que permita predecir fallas en equipos mediante modelos de Machine Learning, clasificar alertas críticas para tomar decisiones comerciales informadas y optimizar la gestión comercial y de post venta, priorizando clientes y equipos con mayor riesgo de falla.
+
+### Preguntas a resolver
+
+- ¿Podemos predecir fallas en los equipos de los clientes?
+- ¿Podemos utilizar la telemetría para realizar gestión post venta?
+- ¿Se puede hacer gestión comercial a partir de los datos?
+- ¿Podemos hacer modelos de Data Science con la información de la compañía?
 
 ## 💡 Desarrollo del Proyecto
 El proyecto se desarrolló en las siguientes fases:
