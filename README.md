@@ -4,9 +4,13 @@
 
 Salinas y Fabres S.A. (SALFA S.A.) es una empresa chilena dedicada a la venta y prestación de servicios de vehículos livianos, camiones, maquinaria, motores industriales, partes y accesorios. Dentro de la Gerencia de Post Venta, se administra un área de telemetría que centraliza información operativa sobre los equipos vendidos, garantizando su correcto funcionamiento.
 
-El proyecto surge como respuesta a un desafío clave: la ausencia de estrategias proactivas basadas en datos telemétricos para gestionar fallas en equipos y mejorar el servicio post venta.
+El proyecto surge como respuesta a un desafío clave: la ausencia de estrategias proactivas basadas en datos telemáticos para gestionar fallas en equipos y mejorar el servicio post venta.
 
 ![](images/telemetria.jpeg)
+
+##  🛠️ Evaluación del problema
+
+Haciendo uso de la telemetría SALFA es capaz de obtener flujos de información asociados a los equipos vendidos a sus clientes, sin embargo, a la fecha las acciones de la compañía no se han enfocado en sacar provecho de esta data, lo cual implica acciones reactivas ante la falla de los equipos.
 
 ## 📋 Descripción del Proyecto
 
