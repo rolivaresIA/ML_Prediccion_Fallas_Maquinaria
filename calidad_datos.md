@@ -378,7 +378,7 @@ respecto del total de 32.594 registros de la base.
       theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
 ```
 
-![](calidad_datos_files/figure-markdown_strict/unnamed-chunk-11-1.png)
+![](figures/calidad_datos_files/figure-markdown_strict/unnamed-chunk-11-1.png)
 
 Observamos que las variables provenientes de la base de datos original
 `Descriptivos Equipo` representan un **6,66%** de los valores nulos
