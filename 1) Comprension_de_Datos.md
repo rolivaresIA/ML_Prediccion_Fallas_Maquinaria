@@ -1,4 +1,4 @@
-# Comprensión y preparación de los datos
+# Comprensión y Preparación de los Datos
 
 ### Recogida datos iniciales
 
