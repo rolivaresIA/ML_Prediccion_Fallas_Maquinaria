@@ -439,4 +439,4 @@ Guardaremos esta nueva base en un objeto llamado `base_join2`:
 
 Finalmente, nuestra fuente de datos “base” de trabajo para el proyecto
 será ésta denominada `base_join2`, la cual cuenta con **32.594
-observaciones y 13 variables**.
+observaciones y 14 variables**.
