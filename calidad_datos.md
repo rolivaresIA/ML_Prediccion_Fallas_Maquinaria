@@ -62,7 +62,7 @@ variable:
 </tbody>
 </table>
 
-**Variable type: character**
+**Variable type: `character`**
 
 <table style="width:100%;">
 <colgroup>
@@ -181,7 +181,7 @@ variable:
 </tbody>
 </table>
 
-**Variable type: Date**
+**Variable type: `Date`**
 
 <table>
 <colgroup>
@@ -226,7 +226,7 @@ variable:
 </tbody>
 </table>
 
-**Variable type: factor**
+**Variable type: `factor`**
 
 <table>
 <colgroup>
@@ -259,7 +259,7 @@ variable:
 </tbody>
 </table>
 
-**Variable type: numeric**
+**Variable type: `numeric`**
 
 <table style="width:100%;">
 <colgroup>
