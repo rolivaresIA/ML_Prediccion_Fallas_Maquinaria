@@ -335,8 +335,8 @@ No deberiamos tener observaciones de 2021 dado que se habia definido que
 la base de datos mostraria alertas del año 2020, por tanto es inusual
 que equipos vendidos en 2021 tengan alertas en 2020.
 
--   Registros Afectados: 122
--   Decision: Eliminamos estos registros al no ser significativos en la
+-   **Registros Afectados:** 122
+-   **Decision:** Eliminamos estos registros al no ser significativos en la
     data
 
 <!-- -->
@@ -354,8 +354,8 @@ Una vez visto los estadísticos descriptivos a nivel general, procedemos
 a hacer el **Análisis de Missing** o de valores faltantes.
 
 En el siguiente recuadro se resumen los valores nulos existentes en
-nuestra base de datos, siendo la columna n\_miss: cantidad de valores
-nulos, y la columna pct\_mmiss: el porcentaje de valores nulos, ambas
+nuestra base de datos, siendo la columna `n_miss`: cantidad de valores
+nulos, y la columna `pct_miss`: el porcentaje de valores nulos, ambas
 respecto del total de 32.594 registros de la base.
 
 ```r
@@ -381,7 +381,7 @@ respecto del total de 32.594 registros de la base.
 ![](calidad_datos_files/figure-markdown_strict/unnamed-chunk-11-1.png)
 
 Observamos que las variables provenientes de la base de datos original
-**Descriptivos Equipo** representan un 6,66% de los valores nulos
+`Descriptivos Equipo` representan un **6,66%** de los valores nulos
 existentes. Para profundizar sobre esta situación se realizaron las
 consultas respectivas al área de telemetría de SALFA, quienes nos
 explicaron que los valores nulos se justifican por equipos adquiridos
@@ -393,17 +393,17 @@ prescindir de estos datos.
 ### Análisis de Sesgo
 
 Continuaremos con la revisión de los valores nulos presentes en las
-variables: ‘sum\_ocr\_cnt’ (n° de ocurrencia de la falla) y ‘tla’
-(categoría de la falla). La idea es determinar si la omisión de estas
+variables: `sum_ocr\_cnt` **(n° de ocurrencia de la falla)** y `tla`
+**(categoría de la falla)**. La idea es determinar si la omisión de estas
 variables generará algún tipo de sesgo al trabajar con la data.
 
 Para esto definiremos como sesgo variaciones de missing superiores al 5%
-entre las categorías de la variable ‘año\_facturacion’, que para los
+entre las categorías de la variable `año_facturacion`, que para los
 objetivos del estudio es una variable relevante para detectar fallas en
 los equipos.
 
-**Datos perdidos de la variable ‘sum\_ocr\_cnt’ por las categorías de
-‘año\_facturacion’:**
+**Datos perdidos de la variable `sum_ocr_cnt` por las categorías de
+`año_facturacion`:**
 
 ```r
     base_join2 %>% 
@@ -427,12 +427,12 @@ los equipos.
     ## 11 <NA>               89  2164      4.11
 
 Se observa que la variación entre el año con mayor proporción de datos
-perdidos (2015 – 4,2%) v/s el año con menor proporción de datos vacíos
-(2014 – 0,4%) no es superior al 5%, por tanto, se concluye que la
+perdidos **(2015 – 4,2%)** v/s el año con menor proporción de datos vacíos
+**(2014 – 0,4%)** no es superior al **5%**, por tanto, se concluye que la
 omisión de estos datos no generara sesgo en nuestro análisis.
 
-**Datos perdidos de la variable ‘tla’ por las categorías de
-‘año\_facturacion’:**
+**Datos perdidos de la variable `tla` por las categorías de
+`año_facturacion`:**
 
 ```r
     base_join2 %>% 
@@ -455,14 +455,10 @@ omisión de estos datos no generara sesgo en nuestro análisis.
     ## 10 2020                0  2987      0    
     ## 11 <NA>               19  2164      0.878
 
-Podemos ver que el año 2012, con 74 registros nulos tiene un porcentaje
-de datos faltantes del 7,05%, por lo que en base a nuestra definición
+Podemos ver que el año 2012, con **74** registros nulos tiene un porcentaje
+de datos faltantes del **7,05%**, por lo que en base a nuestra definición
 anterior si estaría generando sesgo. A continuación revisaremos con
 mayor detalle los datos de 2012.
-
-Se observa sesgo en el año 2012, con 74 registros nulos (7,05%). En la
-siguiente imagen revisamos con mayor detalle los datos de 2012 para
-comprobar si efectivamente generarán sesgo.
 
 ```r
     base_join2 %>% 
@@ -481,7 +477,7 @@ comprobar si efectivamente generarán sesgo.
     ## 3 UNKNOWN     test                                                                      7     7      100
 
 Se aprecia que los 74 registros perdidos corresponden nivel de alerta
-‘Unknown’, y se agrupan dentro de la descripción de alerta ‘Invalid DTC
-Name’, que corresponde a una clasificación que no reviste mayor
+`Unknown`, y se agrupan dentro de la descripción de alerta `Invalid DTC
+Name`, que corresponde a una clasificación que no reviste mayor
 importancia al momento de analizar fallas, por tanto, se determina
 omitir estos datos pues no generaran distorsión al análisis.
