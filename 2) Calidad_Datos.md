@@ -1,4 +1,4 @@
-# Calidad de los Datos
+# Calidad y Limpieza de los Datos
 
 ### Estadísticos descriptivos
 
@@ -481,3 +481,14 @@ Se aprecia que los 74 registros perdidos corresponden nivel de alerta
 Name`, que corresponde a una clasificación que no reviste mayor
 importancia al momento de analizar fallas, por tanto, se determina
 omitir estos datos pues no generaran distorsión al análisis.
+
+Dado esto, limpiamos los valores faltantes y nos quedamos con nuestra nueva 
+base llamada `base_limpia`, la cual tiene **29.412 observaciones y 14 variables**. 
+Además, vemos que no existan datos atípicos en la data. 
+
+```r
+base_limpia <- drop_na(base_join2)
+```
+```r
+summary(base_limpia)
+```
