@@ -93,9 +93,9 @@ año, y luego sumarlos para ver el total:
 
 Podemos ver que existen **275 valores atípicos altos**. Es decir, de nuestra
 `base_limpia` de **29.412 observaciones**, existen 275 que son mayores que
-`Q1 + IQR \* 3`. Ahora, haremos lo mismo para los valores atípicos bajos,
+`Q1 + IQR * 3`. Ahora, haremos lo mismo para los valores atípicos bajos,
 con la condición que la horas de funcionamiento de falla de motor sean
-menores a 5 (`first_dtc_engn_hours &lt; 5`).
+menores a 5 (`first_dtc_engn_hours` < 5).
 
 ```r
     pos_atipicos_bajos <- which(base_limpia$first_dtc_engn_hours < 5)
