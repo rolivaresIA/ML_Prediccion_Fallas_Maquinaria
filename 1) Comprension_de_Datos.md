@@ -146,6 +146,16 @@ información</td>
 </tbody>
 </table>
 
+Existen algunas variables que a primera impresión, o desde una perspectiva intuitiva nos dan indicios que son sumamente importantes a la hora de realizar nuestro análisis y proyecto. Sin embargo, es necesario que entendamos si realmente estas lo son. 
+
+Algunos ejemplos de estas, serían: `Decal Model Nm`, `Alert Level`, `alert_defn_dsc`, `prod_line_nm`, `sum_ocr_cnt`, entre otras. Las cuales serán descritas y comprendidas a lo largo del proyecto. 
+
+A modo introductorio es necesario entender que estos equipos de la marca John Deere, corresponden principalmente a maquinaria y tienen clasificaciones según sus tipos y funcionalidades. Algunas, corresponden a maquinarias forestales, otras agrícola y construcción. La variable específica que nos enseña el tipo de maquinaria es `prod_line_nm` y va aún más allá en cuánto a su clasificación genérica, como mencioné anteriormente. A continuación mostraré un gráfico con las cantidades principales y a que me refiero con esta variable que será relevante y clasificadora:
+
+
+
+
+
 ### Carga y preparación de los datos
 
 ```r
