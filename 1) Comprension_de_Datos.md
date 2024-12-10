@@ -152,7 +152,7 @@ Algunos ejemplos de estas, serían: `Decal Model Nm`, `Alert Level`, `alert_defn
 
 A modo introductorio es necesario entender que estos equipos de la marca John Deere, corresponden principalmente a maquinaria y tienen clasificaciones según sus tipos y funcionalidades. Algunas, corresponden a maquinarias forestales, otras agrícola y construcción. La variable específica que nos enseña el tipo de maquinaria es `prod_line_nm` y va aún más allá en cuánto a su clasificación genérica, como mencioné anteriormente. A continuación mostraré un gráfico con las cantidades principales y a que me refiero con esta variable que será relevante y clasificadora:
 
-
+![figures/comprension_de_datos_files/Rplot.png]
 
 
 
