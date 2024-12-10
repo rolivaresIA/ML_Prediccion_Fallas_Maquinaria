@@ -81,7 +81,7 @@ año, y luego sumarlos para ver el total:
 ```
 
     ## 2017 2018 2019 2012 2013 2014 2020 2015 2016 2011 
-    ##    0   27    2    0    0    0    1    0    0    0
+    ##   25  141  22    0    0    0   71    0    6    10
 
 ```r
     total_atipicos_altos <- sum(conteo_atipicos_altos)
@@ -89,7 +89,7 @@ año, y luego sumarlos para ver el total:
     print(total_atipicos_altos)
 ```
 
-    ## [1] 30
+    ## [1] 275
 
 Podemos ver que existen **275 valores atípicos altos**. Es decir, de nuestra
 `base_limpia` de **29.412 observaciones**, existen 275 que son mayores que
@@ -104,12 +104,12 @@ menores a 5 (`first_dtc_engn_hours &lt; 5`).
 
     print(total_atipicos_bajos)
 ```
-    ## [1] 0
+    ## [1] 170
     
 ```r
     sum(total_atipicos_altos, total_atipicos_bajos)
 ```
-    ## [1] 30
+    ## [1] 445
 
 Luego de aplicar las reglas señaladas en el punto precedente, se
 identificó un total de **445 registros atípicos**, siendo **275 registros
