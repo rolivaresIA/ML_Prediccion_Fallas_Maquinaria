@@ -3,7 +3,7 @@
 ### Visualización Outliers
 
 Generaremos un gráfico de cajas (boxplot) entre las variables
-año\_facturacion (año de venta) y first\_dtc\_engn\_hours (horas de
+`año_facturacion` (año de venta) y `first_dtc_engn_hours` (horas de
 funcionamiento del equipo al momento de la falla), ambas variables
 relevantes a la hora de analizar la problemática planteada en el
 proyecto, que es identificar los elementos que aportan al momento de
