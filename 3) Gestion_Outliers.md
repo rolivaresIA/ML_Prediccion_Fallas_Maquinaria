@@ -11,7 +11,7 @@ predecir fallas. En el boxplot se visualiza la distribución de nuestros
 datos, los valores destacados podrían reconocerse como datos atípicos
 que se deben gestionar.
 
-![](figures/limpieza_outliers_files/figure-markdown_strict/unnamed-chunk-9-1.png)
+![](figures/limpieza_outliers_files/figure-markdown_strict/grafico_horas_venta_ajustado.png)
 
 Detección: Con el fin de detectar los registros atípicos presentes en
 cada caja, para objetivos de nuestro estudio definiremos como valor
