@@ -146,15 +146,32 @@ información</td>
 </tbody>
 </table>
 
-Existen algunas variables que a primera impresión, o desde una perspectiva intuitiva nos dan indicios que son sumamente importantes a la hora de realizar nuestro análisis y proyecto. Sin embargo, es necesario que entendamos si realmente estas lo son. 
+Existen algunas variables que a primera impresión, o desde una perspectiva intuitiva nos dan indicios que son sumamente importantes a la hora de realizar nuestro análisis y proyecto. Sin embargo, es necesario que entendamos si realmente lo son. 
 
-Algunos ejemplos de estas, serían: `Decal Model Nm`, `Alert Level`, `alert_defn_dsc`, `prod_line_nm`, `sum_ocr_cnt`, entre otras. Las cuales serán descritas y comprendidas a lo largo del proyecto. 
+Algunos ejemplos serían: 
 
-A modo introductorio es necesario entender que estos equipos de la marca John Deere, corresponden principalmente a maquinaria y tienen clasificaciones según sus tipos y funcionalidades. Algunas, corresponden a maquinarias forestales, otras agrícola y construcción. La variable específica que nos enseña el tipo de maquinaria es `prod_line_nm` y va aún más allá en cuánto a su clasificación genérica, como mencioné anteriormente. A continuación mostraré un gráfico con las cantidades principales y a que me refiero con esta variable que será relevante y clasificadora:
+- `Decal Model Nm`
+- `Alert Level`
+- `alert_defn_dsc`
+- `prod_line_nm`
+- `sum_ocr_cnt`
 
-![figures/comprension_de_datos_files/Rplot.png]
+A modo introductorio es necesario entender que estos equipos de la marca John Deere, corresponden principalmente a maquinaria y tienen clasificaciones según sus tipos y funcionalidades. Algunas, corresponden a maquinarias forestales, otras agrícola y construcción. La variable específica que nos enseña el tipo de maquinaria es `prod_line_nm` y va aún más allá en cuánto a su clasificación genérica, las cuales mencioné anteriormente. A continuación mostraré un gráfico con las cantidades principales y a que me refiero con esta variable que será relevante y clasificadora:
 
+![](figures/comprension_de_datos_files/Rplot.png)
 
+Por otra parte, cuando uno de estos equipos es vendido se activa automáticamente la **telemetría**, que como bien hemos explicado anteriormente es la compartición de datos en línea del equipo, entra las que destacan horómetro, odómetro, posiciones (GPS), alertas, entre otras. 
+
+A lo largo de este proyecto nos centraremos de manera exhaustiva en la variable `Alert Level`, ya que es aquella que nos informa en una primera instancia la salud del equipo. Los clientes de SALFA al recibir estas alertas tienen noción que algo deben revisar a su equipo, o bien hacer mantenciones o reparaciones, dependiendo el grado de complejidad. El área de telemetría dispone de esta información, sin embargo, es difícil tomar acciones proactivas, y el hecho de poder crear un modelo capaz de clasificar o predecir aquellos equipos que son propensos a fallas más graves, puedan ser contactados. 
+
+Las alertas mencionadas anteriormente son:
+
+- `UNKNOWN`: Alertas desconocidas. Puede ocurrir porque se activó algún sensor del equipo, por error, etc.
+- `INFO`: Tipo de alerta menos urgente. Una Expert Alerts informativa indica que una máquina es elegible para un evento de servicio preventivo para garantizar el rendimiento de la máquina a largo plazo.
+- `YELLOW`: Alerta de urgencia alta. Una Expert Alert alta indica que una máquina puede seguir funcionando, pero necesita atención de servicio pronto para que se mantenga operativa.
+- `RED`: El tipo de alerta más urgente. Una Expert Alert crítica indica que una máquina necesita atención inmediata para que se mantenga operativa.
+
+![](figures/comprension_de_datos_files/Rplot01.png)
 
 ### Carga y preparación de los datos
 
