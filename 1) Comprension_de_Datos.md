@@ -152,6 +152,7 @@ Algunos ejemplos serían:
 
 - `Decal Model Nm`
 - `Alert Level`
+- `first_dtc_engn_hours`
 - `alert_defn_dsc`
 - `prod_line_nm`
 - `sum_ocr_cnt`
