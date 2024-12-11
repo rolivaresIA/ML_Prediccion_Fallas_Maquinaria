@@ -1,4 +1,4 @@
-# Estadísticos descriptivos
+# Estadísticos Descriptivos
 
 Una vez con nuestra base completamente limpia, sin valores nulos u
 outliers, procedemos a ver los estadísticos descriptivos por variable.
