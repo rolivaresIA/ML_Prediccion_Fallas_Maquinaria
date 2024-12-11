@@ -320,6 +320,8 @@ variable:
 </tbody>
 </table>
 
+Filtraremos los equipos de la base que han sido vendidos el año 2021:
+
 ```r
     base_join2 %>% 
       filter(año_facturacion == "2021") %>% 
