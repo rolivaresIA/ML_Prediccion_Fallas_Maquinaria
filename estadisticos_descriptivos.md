@@ -158,17 +158,16 @@ de nuestra base:
     ##     5.00  1870.05  4153.80  8114.20 18468.18
 ```r
     base_limpia %>%
-      group_by(año_facturacion) %>% # Agrupar por el campo año_facturacion
-      summarise(
-        Min = min(first_dtc_engn_hours, na.rm = TRUE),
-        Q1 = quantile(first_dtc_engn_hours, probs = 0.25, na.rm = TRUE),
-        Q2 = quantile(first_dtc_engn_hours, probs = 0.50, na.rm = TRUE), # Mediana
-        Q3 = quantile(first_dtc_engn_hours, probs = 0.75, na.rm = TRUE),
-        Max = max(first_dtc_engn_hours, na.rm = TRUE),
-        Media = mean(first_dtc_engn_hours, na.rm = TRUE),
-        `Desv. Estándar` = sd(first_dtc_engn_hours, na.rm = TRUE),
-        `Coef. Asimetría` = psych::skew(first_dtc_engn_hours, na.rm = TRUE),
-        Curtosis = psych::kurtosi(first_dtc_engn_hours, na.rm = TRUE))
+      group_by(año_facturacion) %>%
+      summarise(Min = min(first_dtc_engn_hours, na.rm = TRUE),
+                Q1 = quantile(first_dtc_engn_hours, probs = 0.25, na.rm = TRUE),
+                Q2 = quantile(first_dtc_engn_hours, probs = 0.50, na.rm = TRUE),
+                Q3 = quantile(first_dtc_engn_hours, probs = 0.75, na.rm = TRUE),
+                Max = max(first_dtc_engn_hours, na.rm = TRUE),
+                Media = mean(first_dtc_engn_hours, na.rm = TRUE),
+                `Desv. Estándar` = sd(first_dtc_engn_hours, na.rm = TRUE),
+                `Coef. Asimetría` = psych::skew(first_dtc_engn_hours, na.rm = TRUE),
+                Curtosis = psych::kurtosi(first_dtc_engn_hours, na.rm = TRUE))
 ```
     ## # A tibble: 10 × 10
     ##    año_facturacion    Min     Q1     Q2     Q3    Max  Media `Desv. Estándar` `Coef. Asimetría` Curtosis
