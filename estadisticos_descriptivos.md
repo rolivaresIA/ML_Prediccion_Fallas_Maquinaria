@@ -9,7 +9,9 @@ visión más clara de sus estadísticos.
 Esto lo hacemos con el fin de poder entender profundamente los valores
 de las variables que disponemos:
 
+```r
     Hmisc::describe(base_limpia)
+```
 
     ## base_limpia 
     ## 
@@ -32,10 +34,7 @@ de las variables que disponemos:
     ## ----------------------------------------------------------------------------------------------------------
     ## alert_defn_dsc 
     ##        n  missing distinct 
-    ##    28967        0     2541 
-    ## 
-    ## lowest : AC Clutch Open Circuit                                                                                        AC Clutch Short To Ground                                                                                     Alternator Speed Below Normal                                                                                 Anti-Theft Error                                                                                              Battery Voltage Low                                                                                          
-    ## highest: YELLOW VCU 524044.01 Axle Oil Filter restricted - Replace Filter. Additional troubleshooting may be required. YELLOW VCU 524044.03 Axle Oil Filter Restriction Switch circuit fault - Troubleshooting required.             YELLOW VSS 521395.12 Accelerometer Sensor - Bad Intelligent, Intermittent or Incorrect                        YELLOW WAB 524221.5 pump 1 current low                                                                        YELLOW WAB 524222.5 WARATAH PUMP 2 CURRENT LOW                                                               
+    ##    28967        0     2541                                                          
     ## ----------------------------------------------------------------------------------------------------------
     ## pin_prefix 
     ##        n  missing distinct 
@@ -124,7 +123,7 @@ de las variables que disponemos:
     ## Proportion 0.719 0.281
     ## ----------------------------------------------------------------------------------------------------------
 
-### Análisis **first\_dtc\_engn\_hours**:
+### Análisis **first_dtc_engn_hours**:
 
 A lo largo del proyecto hemos investigado la importancia de ciertas
 variables y cómo éstas podrían ayudarnos a la predicción de fallas. Dado
@@ -136,28 +135,28 @@ de nuestra base:
 -   `Coeficiente de asimetría`:
 
 <!-- -->
-
+```r
     psych::skew(base_limpia$first_dtc_engn_hours)
-
+```
     ## [1] 0.7957582
 
 -   `Curtosis`:
 
 <!-- -->
-
+```r
     psych::kurtosi(base_limpia$first_dtc_engn_hours)
-
+```
     ## [1] -0.25132
 
 -   `Cuantiles`:
 
 <!-- -->
-
+```r
     quantile(base_limpia$first_dtc_engn_hours, prob = seq(0, 1, 0.25))
-
+```
     ##       0%      25%      50%      75%     100% 
     ##     5.00  1870.05  4153.80  8114.20 18468.18
-
+```r
     base_limpia %>%
       group_by(año_facturacion) %>% # Agrupar por el campo año_facturacion
       summarise(
@@ -170,7 +169,7 @@ de nuestra base:
         `Desv. Estándar` = sd(first_dtc_engn_hours, na.rm = TRUE),
         `Coef. Asimetría` = psych::skew(first_dtc_engn_hours, na.rm = TRUE),
         Curtosis = psych::kurtosi(first_dtc_engn_hours, na.rm = TRUE))
-
+```
     ## # A tibble: 10 × 10
     ##    año_facturacion    Min     Q1     Q2     Q3    Max  Media `Desv. Estándar` `Coef. Asimetría` Curtosis
     ##    <chr>            <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>            <dbl>             <dbl>    <dbl>
@@ -185,7 +184,7 @@ de nuestra base:
     ##  9 2019               7.9  957.   1750.  2938.  6921.  2049.            1374.             0.738   -0.169
     ## 10 2020               5     17.2   290.   857.  2547.   536.             635.             1.23     0.495
 
-![](estadisticos_files/figure-markdown_strict/unnamed-chunk-31-1.png)
+![](figures/estadisticos_files/figure-markdown_strict/unnamed-chunk-31-1.png)
 
 En los histogramas se puede visualizar con mayor detalle la distribución
 de la variable`first_dtc_engn_hour`, y en compañía de los indicadores
@@ -199,21 +198,22 @@ por medio de la curtosis se puede decir que existe una leve tendencia a
 que los datos se concentren de forma normal en torno a la media de
 2.048,6 horas.
 
-### Análisis **prod\_line\_nm**:
+### Análisis **prod_line_nm**:
 
 Por otra parte, y ya mencionado al inicio del proyecto. La variable
 `prod_line_nm` (Nombre línea de producto) nos categoriza los distintos
 tipos de maquinaria existente y es importante comprender su distribución
 para ver a que clasificación de equipos corresponden mayormente los
 tipos de alertas.
-
+```r
     conteo_prod <-  base_limpia %>% 
       group_by(prod_line_nm) %>% 
       count() %>% 
       mutate(prop = n / nrow(base_limpia)) 
-
+```
+```r
     print(conteo_prod)
-
+```
     ## # A tibble: 13 × 3
     ## # Groups:   prod_line_nm [13]
     ##    prod_line_nm                n    prop
@@ -232,7 +232,7 @@ tipos de alertas.
     ## 12 WHEEL LOADERS            5789 0.200  
     ## 13 WHEELED HARVESTERS       1992 0.0688
 
-![](estadisticos_files/figure-markdown_strict/unnamed-chunk-34-1.png)
+![](figures/estadisticos_files/figure-markdown_strict/unnamed-chunk-34-1.png)
 
 Del gráfico anterior podemos ver la proporción que tiene cada línea de
 producto de maquinaria, que a día de hoy han presentado algún tipo de
@@ -240,30 +240,21 @@ alerta a telemetría. Estas líneas de producto pertenecen a un tipo de
 maquinaria (construcción, forestal), que son clasificados por la
 variable `tipo_maquina_nivel_2`.
 
-### Análisis **tipo\_maquina\_nivel\_2** vs **mantencion\_previa**:
+### Análisis **tipo_maquina_nivel_2** vs **mantencion_previa**:
 
 En el siguiente recuadro se presentará un análisis de las variables
 `tipo_maquina_nivel_2` y `mantencion_previa` con el objetivo de ver a
 grandes rasgos, que tipos y cantidades de maquinaria construcción y
 forestal, realizan mantenciones previas en SALFA.
 
+```r
     gmodels::CrossTable(base_limpia$tipo_maquina_nivel_2, base_limpia$mantencion_previa,
                         prop.t = F, prop.chisq = F, 
                         dnn = c("Tipo de Máquina", "¿Mantención previa?"))
+```
 
-    ## 
-    ##  
-    ##    Cell Contents
-    ## |-------------------------|
-    ## |                       N |
-    ## |           N / Row Total |
-    ## |           N / Col Total |
-    ## |-------------------------|
-    ## 
-    ##  
     ## Total Observations in Table:  28967 
     ## 
-    ##  
     ##                  | ¿Mantención previa? 
     ##  Tipo de Máquina |        No |        Si | Row Total | 
     ## -----------------|-----------|-----------|-----------|
@@ -278,34 +269,31 @@ forestal, realizan mantenciones previas en SALFA.
     ##     Column Total |     20834 |      8133 |     28967 | 
     ##                  |     0.719 |     0.281 |           | 
     ## -----------------|-----------|-----------|-----------|
-    ## 
-    ## 
+
 
 En términos generales se puede decir que el **71,9%** de los equipos que
 reportaron un cierto nivel de alerta durante 2020 no contaban con una
-mantención previa realizada en algún servicio técnico de SALFA.
+mantención previa realizada en algún servicio técnico de **SALFA**.
 Adicionalmente se puede indicar que las máquinas de construcción son las
 que tienen una mayor presencia en nuestra data, siendo a su vez, el tipo
 de maquinaria que menor proporción de mantención previa, **39,4% v/s
 60,6%** de las maquinarias de tipo forestal.
 
-### Análisis **sum\_ocr\_cnt**:
+### Análisis **sum_ocr_cnt**:
 
 El número de ocurrencias de falla es una variable que suma la cantidad
 de fallas registradas asociadas a un número o ID de equipo, es decir, es
 una frecuencia acumulada. Dado esto, es que crearemos un `dataframe`
 para reflejar la cantidad de veces que se registra una falla para un
 cierto nivel de alerta.
-
+```r
     frecuencia_fallas <- base_limpia %>% 
                           group_by(alert_level, tla, prod_line_nm, año_facturacion) %>% 
                            summarise(n = n())
+```
+![](figures/estadisticos_files/figure-markdown_strict/unnamed-chunk-37-1.png) 
 
-    ## `summarise()` has grouped output by 'alert_level', 'tla', 'prod_line_nm'. You can override using the
-    ## `.groups` argument.
-
-![](estadisticos_files/figure-markdown_strict/unnamed-chunk-37-1.png) De
-éste gráfico, podemos interpretar que para equipos entre los años **2017
+De éste gráfico, podemos interpretar que para equipos entre los años **2017
 y 2020** existe un mayor nivel de alertas. Esto conversando con las
 áreas técnicas respectivas, hace sentido, ya que equipos más nuevos
 tienen una mayor cantidad de sensores y tecnologías que podrían estar
