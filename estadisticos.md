@@ -1,3 +1,9 @@
+| Producto    | Precio      |
+|-------------|-------------|
+| Producto A  | $10         |
+| Producto B  | <span style="color: red;">$20</span> |
+| Producto C  | $30         |
+
 ### Estadísticos descriptivos
 
 Una vez con nuestra base completamente limpia, sin valores nulos u
